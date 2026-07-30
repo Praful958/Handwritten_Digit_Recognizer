@@ -20,3 +20,15 @@ logs/
 # OS Files
 .DS_Store
 Thumbs.db
+
+.venv/
+__pycache__/
+*.pyc
+
+models/
+data/
+logs/
+
+.vscode/
+
+.DS_Store
