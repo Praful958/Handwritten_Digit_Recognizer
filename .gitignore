@@ -1,0 +1,22 @@
+# Virtual Environment
+.venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Model Files
+*.pth
+
+# Dataset
+data/
+
+# Logs
+logs/
+
+# Streamlit
+.streamlit/
+
+# OS Files
+.DS_Store
+Thumbs.db
