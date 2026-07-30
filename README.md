@@ -78,7 +78,7 @@ Handwritten_Digit_Recognizer/
 Clone the repository
 
 ```bash
-git clone https://github.com/your-username/Handwritten_Digit_Recognizer.git
+git clone https://github.com/Praful958/Handwritten_Digit_Recognizer.git
 ```
 
 Move into the project directory
