@@ -1,160 +1,107 @@
-# ✍️ AI Handwritten Digit Recognizer
+# AI Handwritten Digit Recognizer
 
-A Deep Learning based Handwritten Digit Recognition System built using **PyTorch CNN** and **Streamlit**.  
-The application allows users to draw handwritten digits and get real-time predictions with confidence scores.
-
----
-
-## 🚀 Features
-
-✅ CNN based image classification using PyTorch  
-✅ Real-time handwritten digit prediction  
-✅ Streamlit interactive web interface  
-✅ Top-3 prediction results with confidence score  
-✅ Image preprocessing pipeline  
-✅ Model evaluation system  
-✅ Training history tracking  
-✅ Accuracy and loss visualization  
-✅ Confusion matrix analysis  
+A Deep Learning based Handwritten Digit Recognition System built using **PyTorch** and **Streamlit**. The application allows users to draw handwritten digits on an interactive canvas and predicts the digit in real time using a Convolutional Neural Network (CNN).
 
 ---
 
-## 🛠️ Tech Stack
+## Features
 
-### Deep Learning
+- Real-time handwritten digit prediction
+- PyTorch CNN model trained on the MNIST dataset
+- Interactive drawing canvas built with Streamlit
+- Top-3 predictions with confidence scores
+- Model evaluation using Confusion Matrix
+- Training Accuracy and Loss visualization
+- Modular and clean project architecture
+
+---
+
+## Tech Stack
+
+- Python
 - PyTorch
 - Torchvision
-- Convolutional Neural Network (CNN)
-
-### Data Processing
+- Streamlit
 - NumPy
 - Pillow
-
-### Visualization
 - Matplotlib
-- Scikit-learn
-
-### Deployment
-- Streamlit
 
 ---
 
-## 📂 Project Architecture
+## Project Structure
 
-```
+```text
 Handwritten_Digit_Recognizer/
 
-│
-├── app.py                  # Streamlit Web Application
-├── train.py                # Training Pipeline
-├── evaluate.py             # Model Evaluation
-├── confusion_matrix.py     # Confusion Matrix Generator
-├── plot_history.py         # Training Graph Generator
-├── config.py               # Configuration Management
+├── app.py
+├── train.py
+├── evaluate.py
+├── confusion_matrix.py
+├── plot_history.py
+├── config.py
 ├── requirements.txt
 ├── README.md
 │
-├── data/
-│   └── MNIST Dataset
+├── assets/
+│   └── style.css
 │
 ├── models/
-│   └── best_model.pth      # Trained CNN Model
+│   └── best_model.pth
 │
 ├── outputs/
 │   ├── history.json
-│   ├── loss_graph.png
+│   ├── confusion_matrix.png
 │   ├── accuracy_graph.png
-│   └── confusion_matrix.png
+│   └── loss_graph.png
+│
+├── screenshots/
+│   ├── home.png
+│   ├── prediction.png
+│   ├── confusion_matrix.png
+│   ├── accuracy_graph.png
+│   └── loss_graph.png
 │
 └── src/
-    ├── model.py            # CNN Architecture
-    ├── dataset.py          # Data Loading
-    ├── trainer.py           # Training Logic
-    ├── predictor.py         # Prediction Logic
-    ├── preprocess.py        # Image Processing
-    └── evaluation.py        # Evaluation Logic
+    ├── dataset.py
+    ├── model.py
+    ├── predictor.py
+    ├── preprocess.py
+    ├── evaluation.py
+    ├── trainer.py
+    └── utils.py
 ```
 
 ---
 
-## 🧠 Model Architecture
+## Installation
 
-The model uses a Convolutional Neural Network:
-
-```
-Input Image (28x28)
-
-        ↓
-
-Convolution Layer
-
-        ↓
-
-ReLU Activation
-
-        ↓
-
-Max Pooling
-
-        ↓
-
-Convolution Layer
-
-        ↓
-
-Fully Connected Layers
-
-        ↓
-
-10 Class Output (0-9)
-```
-
----
-
-## 📊 Model Performance
-
-Dataset:
-- MNIST Handwritten Digits
-
-Training Accuracy:
-- 99%+
-
-Evaluation Metrics:
-- Accuracy
-- Confusion Matrix
-- Loss Curve
-
----
-
-## ⚙️ Installation
-
-Clone repository:
+Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/your-username/Handwritten_Digit_Recognizer.git
 ```
 
-Go inside project:
+Move into the project directory
 
 ```bash
 cd Handwritten_Digit_Recognizer
 ```
 
-Create virtual environment:
+Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate environment:
+Activate the virtual environment
 
-Windows:
+**Windows**
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Install dependencies:
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -162,27 +109,17 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Run Project
-
-### Train Model
+## Train the Model
 
 ```bash
 python train.py
 ```
 
-### Evaluate Model
+The trained model will be saved inside the **models/** directory.
 
-```bash
-python evaluate.py
-```
+---
 
-### Generate Graphs
-
-```bash
-python plot_history.py
-```
-
-### Start Web Application
+## Run the Application
 
 ```bash
 streamlit run app.py
@@ -190,28 +127,99 @@ streamlit run app.py
 
 ---
 
-## 📸 Application Preview
+## Evaluate the Model
 
-(Add Streamlit screenshots here)
+Generate model evaluation metrics
+
+```bash
+python evaluate.py
+```
+
+Generate confusion matrix
+
+```bash
+python confusion_matrix.py
+```
+
+Generate training graphs
+
+```bash
+python plot_history.py
+```
 
 ---
 
-## 🔮 Future Improvements
+# Application Preview
 
-- Better image centering algorithm
-- Data augmentation
-- Advanced CNN architecture
-- Cloud deployment
-- Mobile application integration
+## Home Screen
+
+<p align="center">
+<img src="screenshots/home.png" width="900">
+</p>
 
 ---
 
-## 👨‍💻 Author
+## Prediction Result
+
+<p align="center">
+<img src="screenshots/prediction.png" width="900">
+</p>
+
+---
+
+# Model Evaluation
+
+## Confusion Matrix
+
+<p align="center">
+<img src="screenshots/confusion_matrix.png" width="700">
+</p>
+
+---
+
+## Training Accuracy
+
+<p align="center">
+<img src="screenshots/accuracy_graph.png" width="700">
+</p>
+
+---
+
+## Training Loss
+
+<p align="center">
+<img src="screenshots/loss_graph.png" width="700">
+</p>
+
+---
+
+## Model Information
+
+| Attribute | Value |
+|-----------|-------|
+| Framework | PyTorch |
+| Model | Convolutional Neural Network (CNN) |
+| Dataset | MNIST |
+| Number of Classes | 10 |
+| Input Size | 28 × 28 |
+| Output | Digit Prediction (0–9) |
+
+---
+
+## Future Improvements
+
+- Support custom datasets
+- Export trained model to ONNX
+- Deploy using Docker
+- REST API using FastAPI
+- Mobile-friendly interface
+
+---
+
+## Author
 
 **Patil Praful Sajan**
 
-AI/ML Engineer Aspirant
+Final Year Computer Engineering Student
 
----
-
-⭐ If you like this project, consider giving it a star.
+AI / Machine Learning Enthusiast

@@ -1,103 +1,143 @@
 import streamlit as st
 import numpy as np
+from pathlib import Path
 
 from streamlit_drawable_canvas import st_canvas
-
 from src.predictor import Predictor
 
 
-# Page Config
 st.set_page_config(
     page_title="AI Handwritten Digit Recognizer",
     page_icon="✍️",
-    layout="centered"
+    layout="wide"
 )
 
+css_file = Path(__file__).parent / "assets" / "style.css"
 
-# Title
+with open(css_file, "r", encoding="utf-8") as file:
+    st.markdown(
+        f"<style>{file.read()}</style>",
+        unsafe_allow_html=True
+    )
+
+
+with st.sidebar:
+
+    st.title("🤖 AI Digit Recognizer")
+
+    st.info(
+        """
+### Model
+
+**Framework:** PyTorch
+
+**Architecture:** CNN
+
+**Dataset:** MNIST
+
+**Training Accuracy:** 99.46%
+
+**Classes:** 10
+"""
+    )
+
+    st.success("✅ Real-time Prediction")
+    st.success("✅ Top-3 Results")
+    st.success("✅ Confidence Score")
+
+
 st.title("✍️ AI Handwritten Digit Recognizer")
 
-st.write(
-    "Draw a digit and our PyTorch CNN model will predict it."
+st.markdown(
+"""
+Recognize handwritten digits using a **PyTorch Convolutional Neural Network** trained on the **MNIST dataset**.
+
+Draw a digit on the canvas and click **Predict Digit**.
+"""
 )
 
+st.divider()
 
-# Load Model
+
 @st.cache_resource
-def load_predictor():
-
+def load_model():
     return Predictor()
 
 
-predictor = load_predictor()
+predictor = load_model()
+
+left_col, right_col = st.columns([1, 1])
 
 
-# Canvas
-st.subheader("🖊️ Draw Digit Here")
+with left_col:
 
-canvas_result = st_canvas(
-    fill_color="black",
-    stroke_width=18,
-    stroke_color="white",
-    background_color="black",
-    height=280,
-    width=280,
-    drawing_mode="freedraw",
-    key="canvas",
+    st.subheader("📝 Draw Digit")
+
+    canvas_result = st_canvas(
+        fill_color="black",
+        stroke_width=18,
+        stroke_color="white",
+        background_color="black",
+        height=320,
+        width=320,
+        drawing_mode="freedraw",
+        key="canvas",
+    )
+
+    predict = st.button(
+        "🚀 Predict Digit",
+        use_container_width=True
+    )
+
+
+with right_col:
+
+    st.subheader("🤖 Prediction")
+
+    if predict:
+
+        if canvas_result.image_data is not None:
+
+            image = canvas_result.image_data[:, :, :3]
+            image = np.mean(image, axis=2)
+
+            results = predictor.predict(image)
+
+            best = results[0]
+
+            st.metric(
+                "Predicted Digit",
+                best["digit"]
+            )
+
+            st.metric(
+                "Confidence",
+                f"{best['confidence']*100:.2f}%"
+            )
+
+            st.markdown("### 🏆 Top 3 Predictions")
+
+            for item in results:
+
+                st.write(f"**Digit {item['digit']}**")
+
+                st.progress(
+                    float(item["confidence"])
+                )
+
+                st.caption(
+                    f"{item['confidence']*100:.2f}%"
+                )
+
+        else:
+
+            st.warning(
+                "Please draw a digit first."
+            )
+
+
+st.divider()
+
+st.caption(
+    "Built using PyTorch • Streamlit • MNIST Dataset"
 )
-
-
-# Predict Button
-if st.button("🔍 Predict"):
-
-    if canvas_result.image_data is not None:
-
-        image = canvas_result.image_data[:, :, :3]
-
-        image = np.mean(
-            image,
-            axis=2
-        )
-
-
-        results = predictor.predict(image)
-
-
-        st.subheader("🏆 Top 3 Predictions")
-
-
-        rank = 1
-
-        for item in results:
-
-            digit = item["digit"]
-
-            confidence = item["confidence"]
-
-
-            st.write(
-                f"### #{rank} Prediction: {digit}"
-            )
-
-
-            st.progress(
-                float(confidence)
-            )
-
-
-            st.write(
-                f"Confidence: {confidence*100:.2f}%"
-            )
-
-
-            st.divider()
-
-
-            rank += 1
-
-
-    else:
-
-        st.warning(
-            "Please draw a digit first."
-        )

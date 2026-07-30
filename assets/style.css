@@ -1,0 +1,105 @@
+.stApp {
+    background: #0b1220;
+    font-family: "Segoe UI", sans-serif;
+}
+
+
+.main {
+    max-width: 900px;
+}
+
+
+h1 {
+    text-align: center;
+    color: white !important;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+
+h2, h3 {
+    color: #e5e7eb !important;
+}
+
+
+p {
+    color: #cbd5e1 !important;
+    font-size: 17px;
+}
+
+
+section[data-testid="stSidebar"] {
+    background: #111827;
+}
+
+
+section[data-testid="stSidebar"] * {
+    color: #e5e7eb !important;
+}
+
+
+.stButton > button {
+
+    width: 100%;
+    height: 50px;
+
+    background: #2563eb;
+    color: white;
+
+    border-radius: 12px;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    border: none;
+}
+
+
+.stButton > button:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+.prediction-card {
+
+    background: #111827;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    margin: 15px 0;
+
+    border: 1px solid #334155;
+
+}
+
+
+.prediction-card h3 {
+
+    color: #60a5fa !important;
+
+}
+
+
+.stProgress > div > div {
+
+    background-color: #2563eb;
+
+}
+
+
+.stAlert {
+
+    border-radius: 12px;
+
+}
+
+
+hr {
+
+    border-color: #334155;
+
+}
